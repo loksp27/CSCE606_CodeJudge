@@ -84,6 +84,7 @@ class ProblemsController < ApplicationController
   # GET /problems/new
   def new
     @tags = Tag.all
+    @languages = Language.all
     @problem = Problem.new
     authorize @problem
     # @test_cases = @problem.test_cases
@@ -153,11 +154,11 @@ class ProblemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def problem_params
-      params.require(:problem).permit(:title, :body, test_cases_attributes: [:id, :input, :output, :example, :_destroy])
+      params.require(:problem).permit(:title, :body, :tags, :languages, test_cases_attributes: [:id, :input, :output, :example, :_destroy])
     end
 
     def tag_params
-      params.require(:tags)
+      # params.require(problems:[:tags])
     end
 
     def search_tag_params

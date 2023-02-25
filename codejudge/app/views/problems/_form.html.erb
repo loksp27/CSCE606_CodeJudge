@@ -17,7 +17,9 @@
   <%= f.label "Description" %>
   <%= f.text_area :body %>
   <%= f.label "Tags" %>
-  <%= select_tag :tags, options_from_collection_for_select(@tags, 'id', 'tag'), class: 'form-control col-md-7 col-xs-12', id: 'countries_select' %>
+  <%= f.select :tags, options_from_collection_for_select(@tags, 'id', 'tag'), class: 'form-control col-md-7 col-xs-12', id: 'countries_select' %>
+  <%= f.label "Language restriction" %>
+  <%= f.select :languages, options_from_collection_for_select(@languages, 'id', 'name'), class: 'form-control col-md-7 col-xs-12', id: 'countries_select' %>
 
 
   
