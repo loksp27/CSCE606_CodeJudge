@@ -53,9 +53,17 @@ class GroupsController < ApplicationController
 
   # DELETE /groups/1 or /groups/1.json
   def destroy
-    if @group.destroy
-      redirect_to instructors_path
+    puts "here"
+    problem_group = ProblemGroup.where(group_id: @group.id)
+    problem_group.destroy
+    @group.destroy
+    respond_to do |format|
+      format.html { redirect_to instructors_path, notice: "class group was successfully destroyed." }
+      format.json { head :no_content }
     end
+#     if @group.destroy
+#       redirect_to instructors_path
+#     end
   end
 
   def get_users_of_group
